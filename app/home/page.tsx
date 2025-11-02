@@ -1,8 +1,13 @@
 "use client";
+import { SimpleHeader } from "@/components/ui/simple-header";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
 
 export default function HomePage() {
   const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+
 
   useEffect(() => {
     fetch("/api/me").then(async (r) => {
@@ -16,16 +21,24 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">Welcome to LocalLens 👋</h1>
-        <button
-          onClick={handleLogout}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <SimpleHeader />
+      <div className="p-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl font-bold">Welcome to LocalLens 👋</h1>
+          <div className="flex gap-2">
+            <button
+              onClick={() => router.push("/services")}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+              Browse Services
+            </button>
+            <button
+              onClick={() => router.push("/services/new")}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+              Post a Service
+            </button>
+          </div>
+        </div>
 
       <p className="text-gray-600 mb-4">
         Hi {user?.name || "there"}, explore local services near you.
@@ -39,6 +52,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-500">Coming soon...</p>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

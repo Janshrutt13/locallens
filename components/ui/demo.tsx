@@ -1,9 +1,9 @@
-import { SignIn2 } from "@/components/ui/clean-minimal-sign-in"
+import { SimpleHeader } from "@/components/ui/simple-header";
 
-const Demo = () =>{
-    return (
-        <SignIn2/>
-    )
+export default function DemoOne() {
+  return (
+		<div className="relative min-h-screen w-full">
+			<SimpleHeader />
+		</div>
+	);
 }
-
-export {Demo}
