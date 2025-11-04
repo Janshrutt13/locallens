@@ -51,7 +51,7 @@ const SignInForm = () => {
  
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-white p-4">
-      <div className="w-full max-w-md bg-gradient-to-b from-sky-50/50 to-white rounded-3xl shadow-xl p-8 flex flex-col items-center border border-blue-100 text-black">
+      <div className="w-full max-w-md bg-linear-to-b from-sky-50/50 to-white rounded-3xl shadow-xl p-8 flex flex-col items-center border border-blue-100 text-black">
         <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white mb-6 shadow-lg">
           <LogIn className="w-7 h-7 text-black" />
         </div>
@@ -93,7 +93,7 @@ const SignInForm = () => {
         <button
           onClick={handleSignIn}
           disabled={loading}
-          className="w-full bg-gradient-to-b from-gray-700 to-gray-900 text-white font-medium py-2 rounded-xl shadow hover:brightness-105 cursor-pointer transition mb-4 disabled:opacity-50"
+          className="w-full bg-linear-to-b from-gray-700 to-gray-900 text-white font-medium py-2 rounded-xl shadow hover:brightness-105 cursor-pointer transition mb-4 disabled:opacity-50"
         >
           {loading ? "Signing In..." : "Sign In"}
         </button>

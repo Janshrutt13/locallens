@@ -1,45 +1,48 @@
-import { NextResponse } from "next/server";
-import {prisma} from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 import { verifyJwt } from "@/lib/auth";
 
-
 export async function GET() {
-    try{
+    try {
         const services = await prisma.service.findMany({
-            include : { owner : { select : {name : true , email : true}}},
-            orderBy : { createdAt : 'desc'}
-        })
+            include: { owner: { select: { name: true, email: true } } },
+            orderBy: { createdAt: 'desc' }
+        });
         return NextResponse.json(services);
-
-    }catch(err){
-       console.error(err);
-       return NextResponse.error();
+    } catch (err) {
+        console.error(err);
+        return NextResponse.json({ error: "Failed to fetch services" }, { status: 500 });
     }
 }
 
-export async function POST(req : Request){
-    try{
-       const token = req.headers.get('authorization')?.split(" ")[1];
-       if(!token) return NextResponse.json({ error : "Unauthorized"} , {status : 401})
+export async function POST(req: NextRequest) {
+    try {
+        const { title, description, tags, location } = await req.json();
 
-       const user = verifyJwt(token)
-       if(!user) return NextResponse.json({ error : "Invalid token"} , {status : 401})
-
-       const {title , description , tags } = await req.json();
-
-       const service = await prisma.service.create({
-        data : {
-            title,
-            description,
-            tags,
-            ownerId : user.id
+        // For now, create a default user if none exists
+        let defaultUser = await prisma.user.findFirst();
+        if (!defaultUser) {
+            defaultUser = await prisma.user.create({
+                data: {
+                    name: "Demo User",
+                    email: "demo@locallens.com",
+                    password: "demo"
+                }
+            });
         }
-       })
 
-       return NextResponse.json(service);
+        const service = await prisma.service.create({
+            data: {
+                title,
+                description: `${description} | Location: ${location || 'Not specified'}`,
+                tags,
+                ownerId: defaultUser.id
+            }
+        });
 
-    }catch(err){
-       console.error(err);
-       return NextResponse.error();
+        return NextResponse.json(service);
+    } catch (err) {
+        console.error(err);
+        return NextResponse.json({ error: "Failed to create service" }, { status: 500 });
     }
 }
