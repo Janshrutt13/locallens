@@ -70,7 +70,7 @@ export function HomeHero() {
     </main>
     
     {/* Featured Services Section */}
-    <section id="featured-services" className="min-h-screen bg-white px-10 py-20">
+    <section id="featured-services" className="min-h-screen bg-[#f3f1ea] px-10 py-20">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12">Featured Services</h2>
         {loading ? (
@@ -86,15 +86,24 @@ export function HomeHero() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service: any) => (
-              <ServiceCardDisplay
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+            {services.map((service: any, index: number) => (
+              <div
                 key={service.id}
-                title={service.title}
-                description={service.description}
-                tags={service.tags}
-                ownerName={service.owner?.name || 'Anonymous'}
-              />
+                className="transform transition-transform duration-300 hover:scale-105"
+                style={{
+                  transform: `rotate(${index % 2 === 0 ? '-2deg' : '2deg'})`,
+                }}
+              >
+                <ServiceCardDisplay
+                  title={service.title}
+                  description={service.description}
+                  tags={service.tags}
+                  ownerName={service.owner?.name || 'Anonymous'}
+                  serviceId={service.id}
+                  clickable={true}
+                />
+              </div>
             ))}
           </div>
         )}

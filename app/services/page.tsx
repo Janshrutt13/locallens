@@ -19,7 +19,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3f1ea]">
       <SimpleHeader />
       <div className="p-8">
         <h1 className="text-3xl font-bold mb-8">Available Services</h1>
@@ -28,15 +28,24 @@ export default function ServicesPage() {
         ) : services.length === 0 ? (
           <p className="text-gray-600">No services available yet. Be the first to post one!</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service: any) => (
-              <ServiceCardDisplay
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+            {services.map((service: any, index: number) => (
+              <div
                 key={service.id}
-                title={service.title}
-                description={service.description}
-                tags={service.tags}
-                ownerName={service.owner?.name || 'Anonymous'}
-              />
+                className="transform transition-transform duration-300 hover:scale-105"
+                style={{
+                  transform: `rotate(${index % 2 === 0 ? '-2deg' : '2deg'})`,
+                }}
+              >
+                <ServiceCardDisplay
+                  title={service.title}
+                  description={service.description}
+                  tags={service.tags}
+                  ownerName={service.owner?.name || 'Anonymous'}
+                  serviceId={service.id}
+                  clickable={true}
+                />
+              </div>
             ))}
           </div>
         )}
