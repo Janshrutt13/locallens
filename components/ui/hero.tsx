@@ -27,25 +27,25 @@ export function Hero({
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between min-h-screen py-20">
       <div className="flex-1 max-w-2xl mb-12 lg:mb-0 lg:pr-12">
-        <div className="text-sm font-medium text-gray-600 mb-4 tracking-wider">
+        <div className="text-sm font-medium text-[#7c5a3a] mb-4 tracking-wider uppercase">
           {eyebrow}
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-[#2d1b0d]">
           {title}
         </h1>
-        <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+        <p className="text-lg text-[#4b2e14] mb-8 leading-relaxed">
           {subtitle}
         </p>
         <div className="flex gap-4 relative z-10">
           <button 
             onClick={() => window.location.href = '/services'}
-            className="border border-black bg-transparent text-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer pointer-events-auto"
+            className="bg-[#b84f15] hover:bg-[#d75a1f] text-white px-6 py-3 rounded-lg transition-colors cursor-pointer pointer-events-auto"
           >
             Browse Services
           </button>
           <button 
             onClick={() => window.location.href = '/create-service'}
-            className="border border-black bg-transparent text-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer pointer-events-auto"
+            className="border border-[#b84f15] bg-transparent text-[#b84f15] hover:bg-[#b84f15] hover:text-white px-6 py-3 rounded-lg transition-colors cursor-pointer pointer-events-auto"
           >
             Post a Service
           </button>

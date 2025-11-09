@@ -30,9 +30,9 @@ export function HomeHero() {
     <main className="min-h-screen flex flex-col bg-[#f3f1ea] px-10 -mt-14 relative overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-br from-green-200 to-blue-200 rounded-full animate-bounce" style={{animationDuration: '3s'}}></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full animate-ping" style={{animationDuration: '4s'}}></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-linear-to-br from-blue-200 to-purple-200 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-linear-to-br from-green-200 to-blue-200 rounded-full animate-bounce" style={{animationDuration: '3s'}}></div>
+        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-linear-to-br from-yellow-200 to-orange-200 rounded-full animate-ping" style={{animationDuration: '4s'}}></div>
       </div>
       <Hero
         eyebrow="DISCOVER | CONNECT | GROW LOCALLY"
@@ -72,7 +72,7 @@ export function HomeHero() {
     {/* Featured Services Section */}
     <section id="featured-services" className="min-h-screen bg-[#f3f1ea] px-10 py-20">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">Featured Services</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-[#2d1b0d]">Featured Services</h2>
         {loading ? (
           <div className="text-center text-gray-600">Loading services...</div>
         ) : services.length === 0 ? (

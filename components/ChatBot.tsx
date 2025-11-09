@@ -71,7 +71,7 @@ export default function ChatBox() {
   return (
     <div className="min-h-screen bg-[#f3f1ea] p-8">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">💬 Community Chat</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-[#2d1b0d]">💬 Community Chat</h2>
         
         <div className="bg-white rounded-lg shadow-lg p-6 mb-4">
           <div className="h-96 overflow-y-auto mb-4 space-y-3">
@@ -118,7 +118,7 @@ export default function ChatBox() {
             <button 
               onClick={sendMessage} 
               disabled={!newMessage.trim()}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+              className="bg-[#b84f15] text-white px-4 py-2 rounded hover:bg-[#d75a1f] disabled:opacity-50 transition-colors"
             >
               Send
             </button>
