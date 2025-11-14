@@ -1,36 +1,196 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🚀 LocalLens — Community Services Marketplace
 
-## Getting Started
+A modern service-sharing platform with real-time messaging, reviews, and geo-based service discovery.
 
-First, run the development server:
+LocalLens is a full-stack marketplace built with Next.js 14, Supabase, and Tailwind, allowing users to post services, discover services, chat with providers, and leave reviews — similar to Fiverr but for local communities.
 
-```bash
+✨ Features
+🏠 Beautiful Home Page
+
+Custom hero section with smooth animations
+
+Fully responsive, peach-themed UI
+
+Clean typography with accessible contrast
+
+📌 Service Management
+
+Create new services with images, location, and categories
+
+Browse all available services
+
+View detailed service information (Fiverr-style layout)
+
+Tags, rating preview, seller details, and more
+
+⭐ Review System
+
+Users can submit ratings & reviews for services
+
+Reviews appear instantly (live sync via Supabase)
+
+Average ratings auto-calculated
+
+💬 Real-Time Messaging
+
+One-to-one chat system (serverless, using Supabase channels)
+
+Instant updates without page refresh
+
+Shows message history per conversation
+
+👤 User Profiles
+
+Service owner profile preview on service page
+
+Ability to contact the service provider directly
+
+Basic identity and email verification via Supabase Auth
+
+📍 Location Support
+
+Each service can optionally store geolocation coordinates
+
+Used for future map-based discovery
+
+🎨 UI & Component System
+
+shadcn/ui integrated
+
+Tailwind CSS for rapid styling
+
+Custom components (Hero, MockupFrame, Buttons, Inputs, Feature sections)
+
+Lucide icons for clarity
+
+Responsive on all devices
+
+🏗️ Tech Stack
+Frontend
+
+Next.js 14 (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+shadcn/ui component library
+
+React Query for API caching
+
+Lucide Icons
+
+Backend
+
+Supabase (Postgres + Auth + Storage + Realtime)
+
+Supabase Channels for messaging
+
+Prisma ORM
+
+Deployment
+
+Fully deployable on Vercel
+
+Supabase handles all backend logic
+
+Zero WebSocket servers required
+
+📂 Folder Structure
+app/
+ ├─ (home)/           # Landing page with hero section
+ ├─ services/
+ │   ├─ page.tsx      # Browse services
+ │   └─ [id]/
+ │       └─ page.tsx  # Service detail (Fiverr-style)
+ ├─ create/
+ │   └─ page.tsx      # Create new service form
+ └─ messages/
+     └─ page.tsx      # Real-time chat UI
+
+components/
+ ├─ ui/               # shadcn + custom components
+ ├─ blocks/           # Hero, Features, etc.
+ └─ messaging/        # Chat bubbles, message list, input
+
+lib/
+ ├─ supabase.ts
+ ├─ prisma.ts
+ └─ utils.ts
+
+🧪 Database Schema (Supabase)
+services
+column	type	description
+id	uuid (pk)	service ID
+title	text	service title
+description	text	full details
+tags	text[]	array of tags
+owner_id	uuid	FK to users
+latitude	float	optional
+longitude	float	optional
+created_at	timestamp	auto
+reviews
+column	type
+id	uuid (pk)
+service_id	uuid
+author_id	uuid
+rating	int
+comment	text
+created_at	timestamp
+messages
+column	type
+id	uuid (pk)
+sender_id	uuid
+receiver_id	uuid
+content	text
+created_at	timestamp
+🔧 Setup Instructions
+1️⃣ Clone the Repo
+git clone https://github.com/your-username/local-lens.git
+cd local-lens
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Setup Environment
+
+Create .env.local:
+
+NEXT_PUBLIC_SUPABASE_URL=xxxx
+NEXT_PUBLIC_SUPABASE_ANON_KEY=xxxx
+SUPABASE_SERVICE_ROLE_KEY=xxxx
+
+4️⃣ Setup shadcn/ui
+npx shadcn-ui init
+
+5️⃣ Run the Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Your app is now running at http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🚀 Deployment
+Deploy to Vercel
 
-## Learn More
+Just run:
 
-To learn more about Next.js, take a look at the following resources:
+vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Vercel hosts your Next.js frontend
 
-## Deploy on Vercel
+Supabase handles database + auth + realtime
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Messaging works even on Vercel (serverless compatible)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🎯 Roadmap
+
+ Add map view for services
+
+ Add “save service” button
+
+ User dashboard for posted / saved services
+
+ Image optimization with Supabase Storage
+
+ AI-powered service recommendations
